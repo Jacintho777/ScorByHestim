@@ -32,7 +32,7 @@ def main(page: Page):
     INTERFACE_HEIGHT = 620
 
     page.fonts = {
-        "Kanit": "https://raw.githubusercontent.com/google/fonts/master/ofl/kanit/Kanit-Regular.ttf",
+        "Kanit": "assets/fonts/Kanit-Regular.ttf",
         "Aleo Bold Italic": "https://raw.githubusercontent.com/google/fonts/master/ofl/aleo/Aleo-BoldItalic.ttf",
         "Roboto": "https://raw.githubusercontent.com/google/fonts/master/apache/roboto/Roboto-Regular.ttf",
         "Open Sans": "https://raw.githubusercontent.com/google/fonts/master/apache/opensans/OpenSans-Regular.ttf",
@@ -55,7 +55,8 @@ def main(page: Page):
         search_input = TextField(
             hint_text="Rechercher...",
             expand=True,
-            on_change=perform_search
+            on_change=perform_search,
+            color=colors.BLACK87,
         )
         page.views.append(View(
                 padding=15,
@@ -63,10 +64,12 @@ def main(page: Page):
                 controls=[
                     Container(
                         # height=INTERFACE_HEIGHT-30,
+                        bgcolor=colors.WHITE,
                         expand=True,
                         content=Column(
                             controls=[
                                 Container(
+                                    bgcolor=colors.WHITE,
                                     content=Row(
                                         height=40,
                                         alignment=MainAxisAlignment.SPACE_BETWEEN,
@@ -74,7 +77,8 @@ def main(page: Page):
                                             IconButton(
                                                 icon=icons.ARROW_BACK,
                                                 icon_size=27,
-                                                on_click=go_back
+                                                on_click=go_back,
+                                                icon_color=FG,
                                             ),
                                             search_input
                                         ]
@@ -136,8 +140,8 @@ def main(page: Page):
                 alignment=MainAxisAlignment.SPACE_BETWEEN,
                 # horizontal_alignment=CrossAxisAlignment.STRETCH,
                 controls=[
-                    IconButton(icon = icons.HOME, icon_size=30, expand=True, on_click=go_home),
-                    IconButton(icon = icons.HELP_ROUNDED,icon_size=30, expand=True ,on_click=lambda e: page.launch_url("https://www.apics.org/docs/default-source/scor-training/scor-v12-0-framework-introduction.pdf?sfvrsn=2")),
+                    IconButton(icon = icons.HOME, icon_size=30, expand=True, on_click=go_home, icon_color=FG),
+                    IconButton(icon = icons.HELP_ROUNDED,icon_size=30, expand=True, icon_color=FG,on_click=lambda e: page.launch_url("https://www.apics.org/docs/default-source/scor-training/scor-v12-0-framework-introduction.pdf?sfvrsn=2")),
                 ]
             ),
             Column(
@@ -145,23 +149,26 @@ def main(page: Page):
                 width=300,
                 controls=[
                     Card(
+                        color=colors.WHITE,
                         content=ExpansionTile(
                             title=Text(tab.name.upper(), color=colors.BLACK87, font_family='Kanit', weight=FontWeight.W_500),
                             leading=Icon(tab.icon, color=tab.color),
                             affinity=TileAffinity.LEADING,
+                            bgcolor=colors.BLUE_100,
                             # initially_expanded=True,
                             # collapsed_text_color=colors.BLUE,
                             # text_color=colors.BLUE,
                             controls=[
                                 Card(
                                     content=FilledButton(
-                                                section,
+                                                text=section,
                                                 width = 400, 
                                                 height=40,
                                                 on_click=nav_section_click,
                                                 style=ButtonStyle(
                                                             shape=RoundedRectangleBorder(radius=0),
                                                             bgcolor=tab.color,
+                                                            color = colors.WHITE,
                                                             text_style=TextStyle(font_family="Kanit"),
                                                             )
                                                         ),
@@ -213,6 +220,8 @@ def main(page: Page):
                                         style=ButtonStyle(
                                             bgcolor=colors.BLUE_900,
                                             shape=ContinuousRectangleBorder(2),
+                                            color = colors.WHITE,
+                                            text_style=TextStyle(font_family="Kanit", size=16),
                                         ),
                                     ),
                                 ),
@@ -225,6 +234,8 @@ def main(page: Page):
                                         style=ButtonStyle(
                                             bgcolor=colors.AMBER_900,
                                             shape=ContinuousRectangleBorder(2),
+                                            color = colors.WHITE,
+                                            text_style=TextStyle(font_family="Kanit", size=16),
                                         ),
                                     ),
                                 ),
@@ -244,6 +255,8 @@ def main(page: Page):
                                         style=ButtonStyle(
                                             bgcolor=colors.GREEN_900,
                                             shape=ContinuousRectangleBorder(2),
+                                            color = colors.WHITE,
+                                            text_style=TextStyle(font_family="Kanit", size=16),
                                         ),
                                     ),
                                 ),
@@ -256,6 +269,8 @@ def main(page: Page):
                                         style=ButtonStyle(
                                             bgcolor=colors.RED_900,
                                             shape=ContinuousRectangleBorder(2),
+                                            color = colors.WHITE,
+                                            text_style=TextStyle(font_family="Kanit", size=16),
                                         ),
                                     ),
                                 ),
@@ -268,10 +283,13 @@ def main(page: Page):
                                 expand=True,
                                 text = "Rechercher",
                                 icon=icons.SEARCH_SHARP,
+                                icon_color=colors.WHITE,
                                 on_click=navigate_to_search,
                                 style=ButtonStyle(
                                             bgcolor=colors.BLUE_ACCENT_700,
                                             shape=ContinuousRectangleBorder(2),
+                                            color = colors.WHITE,
+                                            text_style=TextStyle(font_family="Kanit", size=16),
                                         ),
                             ),
                         ),
@@ -282,11 +300,14 @@ def main(page: Page):
                                 expand=True,
                                 text = "SCOR QUIZ",
                                 icon=icons.QUIZ_SHARP,
+                                icon_color=colors.WHITE,
                                 on_click=bring_up_quizz,
                                 style=ButtonStyle(
                                             bgcolor=colors.BLUE_ACCENT_700,
                                             shape=ContinuousRectangleBorder(2),
                                             side=BorderSide(width = 1, color=colors.AMBER_700),
+                                            color = colors.WHITE,
+                                            text_style=TextStyle(font_family="Kanit", size=16),
                                         ),
                             ),
                         ),
@@ -303,6 +324,7 @@ def main(page: Page):
                                         font_family='Kanit', 
                                         size=14, 
                                         text_align=TextAlign.RIGHT,
+                                        color=colors.BLACK87,
                                     ),
                                     Image(
                                         src=f"/images/HESTIM.png",
@@ -317,8 +339,8 @@ def main(page: Page):
                             alignment=MainAxisAlignment.SPACE_BETWEEN,
                             # horizontal_alignment=CrossAxisAlignment.STRETCH,
                             controls=[
-                                IconButton(icon = icons.LANGUAGE_ROUNDED, icon_size=30, expand=True),
-                                IconButton(icon = icons.HELP_ROUNDED,icon_size=30, expand=True ,on_click=lambda e: page.launch_url("https://www.apics.org/docs/default-source/scor-training/scor-v12-0-framework-introduction.pdf?sfvrsn=2")),
+                                IconButton(icon = icons.LANGUAGE_ROUNDED, icon_size=30, expand=True, icon_color=FG),
+                                IconButton(icon = icons.HELP_ROUNDED,icon_size=30, expand=True, icon_color=FG,on_click=lambda e: page.launch_url("https://www.apics.org/docs/default-source/scor-training/scor-v12-0-framework-introduction.pdf?sfvrsn=2")),
                             ]
                         ),
                     ]
@@ -327,8 +349,9 @@ def main(page: Page):
         ]
     )
 
-    page.padding = 1
+    page.padding = 0
     page.title = "SCOR By HESTIM"
+    page.bgcolor = colors.WHITE
     # page.add(root_page_container)
     page.views.append(root_page_container)
     page.go('/')
@@ -452,15 +475,18 @@ def main(page: Page):
     def navigate_to_list(button_key, axe=selected_tab):
         section = button_key
         page.views.append(View( 
+                                bgcolor=colors.WHITE,
                                 padding=15,
                                 route="/sub_section_page",
                                 controls=[
                                     Container(
                                         # height=INTERFACE_HEIGHT-75,
                                         expand=True,
+                                        bgcolor=colors.WHITE,
                                         content=Column(
                                             controls=[
                                                 Container(
+                                                    bgcolor=colors.WHITE,
                                                     content=Row(
                                                         height=25,
                                                         alignment=MainAxisAlignment.SPACE_EVENLY,
@@ -471,7 +497,7 @@ def main(page: Page):
                                                                                 icons.ARROW_BACK, color=FG, size=30
                                                                                 )
                                                                     ),
-                                                            Text(value=section.upper(), text_align=TextAlign.CENTER,expand=True,size=16, font_family="Kanit",weight=FontWeight.W_700),
+                                                            Text(value=section.upper(), text_align=TextAlign.CENTER,expand=True,size=16, font_family="Kanit",weight=FontWeight.W_700, color=colors.BLACK87),
                                                             IconButton(
                                                                 width=30,
                                                                 on_click=lambda e : definition(e),
@@ -684,7 +710,7 @@ def main(page: Page):
                                             fit=ImageFit.CONTAIN,
                                         ),
                                         Text(
-                                            value=' By   ', font_family='Kanit'
+                                            value=' By ', font_family='Kanit', color=colors.BLACK87
                                         ),
                                         Image(
                                             src=f"/images/HESTIM.png",
@@ -700,6 +726,9 @@ def main(page: Page):
                             ],
                         ),
                     Tabs(
+                        unselected_label_color=colors.BLACK54,
+                        label_color=FG,
+                        indicator_color=FG,
                         selected_index=selected_index,
                         animation_duration=300,
                         label_text_style=TextStyle(font_family="Kanit", size=14, letter_spacing=0.2),
@@ -714,20 +743,22 @@ def main(page: Page):
                                     # colors=[colors.WHITE,colors.WHITE, FG],
                                     # ),
                                     bgcolor=colors.GREY_200,
+                                    expand=True,
                                     padding = 10,
                                     content=
                                             Column(
+                                                expand=True,
                                                 spacing = 10,
-                                                alignment=CrossAxisAlignment.STRETCH,
+                                                horizontal_alignment=CrossAxisAlignment.STRETCH,
                                                 controls=[
                                                     FilledButton(
                                                         text=section,
-                                                        width=400,
                                                         height=45,
                                                         on_click=section_click,
                                                         style=ButtonStyle(
                                                                     shape=RoundedRectangleBorder(radius=7),
                                                                     bgcolor=tab.color,
+                                                                    color = colors.WHITE,
                                                                     text_style=TextStyle(font_family="Kanit", size=16),
                                                                     )
                                                                 )
