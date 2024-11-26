@@ -50,7 +50,7 @@ jobs:
     - name: Setup Android Toolchain
       run: |
         sudo apt-get install -y adb
-        flutter doctor --android-licenses || true
+        flutter doctor --android-licenses
 
     - name: Flet Build Web
       run: |
